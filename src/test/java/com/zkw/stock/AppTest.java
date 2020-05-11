@@ -3,7 +3,10 @@ package com.zkw.stock;
 import static org.junit.Assert.assertTrue;
 
 import com.zkw.stock.dao.ContactDao;
+import com.zkw.stock.dao.StudentDao;
 import com.zkw.stock.model.Contact;
+import com.zkw.stock.model.Student;
+import com.zkw.stock.service.StudentService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -45,5 +48,17 @@ public class AppTest
             System.out.println(contact);
         }
 
+    }
+
+    @Test
+    public void testStudent(){
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+//        StudentDao studentDao = ctx.getBean("studentDao",StudentDao.class);
+//        List<Student> students = studentDao.findAll();
+
+        StudentService studentService = ctx.getBean("studentService",StudentService.class);
+        List<Student> students = studentService.getAllStudents();
+        log.info("Students-->"+students);
     }
 }
