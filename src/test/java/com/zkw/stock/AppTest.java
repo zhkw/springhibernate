@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 import com.zkw.stock.dao.ContactDao;
 import com.zkw.stock.model.Contact;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.util.List;
@@ -22,9 +24,12 @@ public class AppTest
 
     @Test
     public void testContact(){
-        GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-        ctx.load("classpath:app-context.xml");
-        ctx.refresh();
+//        GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+//        ctx.load("classpath:app-context.xml");
+//        ctx.refresh();
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("app-context.xml");
+
         ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
         List<Contact> contacts = contactDao.findAll();
         System.out.println("contacts ->"+contacts);
