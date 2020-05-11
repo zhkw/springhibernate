@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import com.zkw.stock.dao.ContactDao;
 import com.zkw.stock.model.Contact;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,6 +18,8 @@ import java.util.List;
  */
 public class AppTest 
 {
+    public static Log log= LogFactory.getLog(AppTest.class);
+
     @Test
     public void shouldAnswerWithTrue()
     {
@@ -32,6 +36,9 @@ public class AppTest
 
         ContactDao contactDao = ctx.getBean("contactDao", ContactDao.class);
         List<Contact> contacts = contactDao.findAll();
+
+        log.info("this is log->"+contacts);
+
         System.out.println("contacts ->"+contacts);
         System.out.println("Listing contacts without details:");
         for (Contact contact: contacts) {
